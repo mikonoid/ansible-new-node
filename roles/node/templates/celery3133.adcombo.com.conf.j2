@@ -1,0 +1,10 @@
+server {
+ listen 80;
+ server_name celery3133.{{domain}};
+ 
+ location / {
+  auth_basic              "Restricted";
+  auth_basic_user_file    /usr/local/etc/nginx/.htpasswd;
+  proxy_pass http://127.0.0.1:5555;
+ }
+}

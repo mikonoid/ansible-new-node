@@ -1,0 +1,13 @@
+server {
+    listen 80;
+    server_name master1-notify.{{domain}};
+
+    access_log /home/logs/notify.nginx.access.log;
+    error_log /home/logs/notify.nginx.error.log;
+
+    location / {
+        uwsgi_pass unix:/usr/local/var/run/adcombo/notify.sock;
+        include uwsgi_params;
+    }
+
+}

@@ -1,0 +1,5 @@
+ - name: Copy nginx option for install
+   copy: src=/var/db/ports/www_nginx/ dest=/var/db/ports/www_nginx/ owner=root group=wheel mode=0644
+....
+ - name: Install nginx
+   shell: "mkdir /var/log/nginx && mkdir /home/logs && cd /usr/ports/www/nginx && make  DISABLE_VULNERABILITIES=yes BATCH=yes install clean"

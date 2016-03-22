@@ -1,0 +1,10 @@
+ - name: PKGNG | Install required soft
+   pkgng: name={{ item }} state=present
+   with_items:
+     - python27
+     - wget
+     - curl
+     - e2fsprogs-libuuid
+     - redis
+     - git
+     

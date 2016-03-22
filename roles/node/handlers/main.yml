@@ -1,0 +1,13 @@
+---
+# handlers file for nginx
+- name: reload nginx
+  service: name=nginx state=reloaded
+  
+- name: reload redis
+  service: name=redis state=reloaded  
+
+- name: reload jenkins
+  service: name=jenkins state=reloaded
+  
+- name: reload rabbit
+  service: name=rabbitmq state=restarted

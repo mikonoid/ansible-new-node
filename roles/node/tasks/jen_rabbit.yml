@@ -1,0 +1,8 @@
+#jenkins rabotaet..
+ - name: Jenkins install.
+   shell: "cd /usr/ports/devel/jenkins && make BATCH=yes install clean"
+
+
+ - name: Install rabbitmq and rabbit manager
+   portinstall: name=rabbitmq state=present
+

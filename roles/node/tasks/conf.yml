@@ -1,0 +1,53 @@
+---
+
+ - name: Copy nginx configs
+   copy: src=/usr/local/etc/nginx/ dest=/usr/local/etc/nginx/ owner=root group=wheel mode=0644
+   notify: reload nginx
+
+ - name: Delete default nginx site
+   file: path=/usr/local/etc/nginx/vhost.conf state=absent
+   notify: reload nginx
+
+ - name: ensure sites-available is configured
+   template: src=vhost.conf.j2 dest=/usr/local/etc/nginx/vhost.conf
+   notify: reload nginx
+
+ - name: Delete default nginx site
+   shell: "rm /usr/local/etc/nginx/admin_configs/*.conf"
+   notify: reload nginx
+
+
+ - name: config rabbit vhost
+   template: src=rabbit3133.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/rabbit3133.{{domain}}.conf
+ 
+ - name: config jenkins vhost  
+   template: src=build.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/build.{{domain}}.conf
+ 
+ - name: config celery vhost  
+   template: src=celery3133.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/celery3133.{{domain}}.conf
+ 
+ - name: config master1-land vhost  
+   template: src=master1-land.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/master1-land.{{domain}}.conf
+ 
+ - name: config master1-notify vhost  
+   template: src=master1-notify.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/master1-notify.{{domain}}.conf
+   
+ - name: config master1 vhost   
+   template: src=master1.adcombo.com.conf.j2 dest=/usr/local/etc/nginx/admin_configs/master1.{{domain}}.conf
+   notify: reload nginx
+    
+     
+ - name: Redis add to rc.conf and start..
+   shell: "echo 'redis_enable=YES' >> /etc/rc.conf"
+   notify: reload redis
+   
+ - name: Jenkins add to rc.conf and start..
+   shell: "echo 'jenkins_enable=YES' >> /etc/rc.conf"
+   notify: reload jenkins
+   
+ - name: RabbitMQ add to rc.conf and start..
+   shell: "echo 'rabbitmq_enable=YES' >> /etc/rc.conf"
+   notify: reload rabbit
+
+
+

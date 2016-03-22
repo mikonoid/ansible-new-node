@@ -1,0 +1,28 @@
+#tasks
+---
+ - include: nginx.yml
+ - include: conf.yml
+ - include: packets.yml
+ - include: zsh.yml
+ - include: jen_rabbit.yml
+ 
+ 
+ - name: Add make config
+   lineinfile: "dest=/etc/make.conf
+               state=present
+               regexp=''
+               insertafter='EOF'
+               line='DISABLE_VULNERABILITIES=yes'"
+
+    
+ - name: Fix python-libuuid issue
+   shell: "cp -r /usr/local/include/uuid /usr/local/include/python2.7/"
+   
+ - name: Install pip
+   portinstall: name=devel/py-pip state=present   
+ 
+ - name: Install python-libuuid
+   shell: "pip install python-libuuid"     
+  
+ 
+   

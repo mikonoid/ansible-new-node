@@ -1,0 +1,4 @@
+---
+# vars file for nginx
+  ip_address: 37.139.56.28
+  domain: us2-slave.adcombo2.me

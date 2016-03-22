@@ -1,0 +1,12 @@
+server {
+ listen 80;
+ server_name master1-land.{{domain}};
+
+ access_log /home/logs/landing.nginx.access.log;
+ error_log /home/logs/landing.nginx.error.log;
+
+ location / {
+  uwsgi_pass unix:/usr/local/var/run/adcombo/landing.sock;
+  include uwsgi_params;
+ }
+}

@@ -1,0 +1,12 @@
+server {
+ listen 80;
+ server_name master1.{{domain}};
+
+ access_log /home/logs/gate.nginx.access.log;
+ error_log /home/logs/gate.nginx.error.log;
+
+ location / {
+  uwsgi_pass unix:/usr/local/var/run/adcombo/gate.sock;
+  include uwsgi_params;
+ }
+}
