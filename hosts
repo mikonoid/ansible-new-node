@@ -12,6 +12,10 @@
 
 [webservers]
 37.139.56.28
+37.139.56.29
+37.139.56.30
+37.139.56.31
+37.139.56.32
 
 # If you have multiple hosts following a pattern you can specify
 # them like this:
