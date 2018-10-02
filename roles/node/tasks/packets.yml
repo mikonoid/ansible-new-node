@@ -7,4 +7,7 @@
      - e2fsprogs-libuuid
      - redis
      - git
+     - rsync
+     - netcat
+     - rabbitmq
      
